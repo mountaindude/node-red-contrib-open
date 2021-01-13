@@ -10,7 +10,6 @@ module.exports = function (RED) {
         RED.nodes.createNode(this, config);
         var node = this;
 
-
         node.on('input', async function (msg) {
             // Message fields:
             // target: string
@@ -39,7 +38,7 @@ module.exports = function (RED) {
 
                 msg.request = {
                     target: node.target,
-                    options: node.options
+                    options: node.options,
                 };
 
                 // Remove all incoming parameters
@@ -47,7 +46,7 @@ module.exports = function (RED) {
                 delete msg.wait;
                 delete msg.app;
                 delete msg.urlencode;
-                
+
                 this.send(msg);
             } catch (err) {
                 node.warn(`Error processing input to Open node: ${err}`);
@@ -62,7 +61,7 @@ module.exports = function (RED) {
             } else {
                 // This node is being restarted
             }
-            
+
             done();
         });
     }

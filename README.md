@@ -78,4 +78,4 @@ This node can only open items in the host computer where Node-RED is running.
 * If running Node-RED natively on a computer, this node can open items (URLs, files etc) on that computer.
 * If running Node-RED as a Docker container, this node will open items in that Docker container. Which is probably not what's desired when it comes to opening web pages, showing images in image viewers etc.
 
-It's actually quite likely that an attempt to use this node from within a Docker container will just fail, as the Node-RED container won't have a web browser, document viewer etc.
+It's actually quite likely that an attempt to use this node from within Node-RED running in a Docker container will just fail, as the Node-RED container won't have a web browser, document viewer etc.

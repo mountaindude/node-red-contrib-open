@@ -46,9 +46,85 @@
 </script>
 
 <script type="text/html" data-help-name="open">
-    <p>Open files using their associated application, or some other application.</p>
+    <p>Open URLs or files in the host OS using their associated application, or some other application.</p>
     <p>
-        <b>NOTE: </b> This only works when Node-RED is running as a native Node.js app. In other words: This node does <b>NOT</b> work when Node-RED is running
-        work when Node-RED runs in a Docker container.
+        <b>NOTE: </b> This node only works when Node-RED is running as a native Node.js app. <br /><br />
+        In other words: This node does <b>NOT</b> work (or at least doesn't do anything meaningful) when Node-RED is running work when Node-RED runs in a Docker
+        container.
     </p>
+
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>
+            target
+            <span class="property-type">string</span>
+        </dt>
+        <dd>The URL, document or file that should be opened in Node-RED's host operating system.</dd>
+        <dt class="optional">app <span class="property-type">string</span></dt>
+        <dd>
+            If left empty the default application for <code>target</code> will be used. Note that the app name is platform dependent. For example, Chrome is
+            `google chrome` on macOS, `google-chrome` on Linux and `chrome` on Windows. You may also pass in the app's full path.
+        </dd>
+        <dt class="optional">wait <span class="property-type">checkbox</span></dt>
+        <dd>Should the node wait for the open command to complete before sending the outgoing message.</dd>
+        <dt class="optional">urlencode <span class="property-type">checkbox</span></dt>
+        <dd>If target is a URL and the `urlencode` open is `true`, URL encoding will be done before sending the URL to the associated application.</dd>
+    </dl>
+
+    <h3>Outputs</h3>
+    <ol class="node-ports">
+        <li>
+            Standard output
+            <dl class="message-properties">
+                <dt>payload <span class="property-type">object</span></dt>
+                <dd>
+                    Result from the open command. Object with members:<br />
+                    <ul>
+                        <li><code>pid</code>: Process ID for the spawned process.</li>
+                        <li><code>spawnargs</code>: Array with the parameters sent to the app used to open <code>target</code>.</li>
+                    </ul>
+                </dd>
+                <dt>request <span class="property-type">object</span></dt>
+                <dd>
+                    A copy of the incoming parameters that were used to open <code>target</code>. Object with members:
+                    <ul>
+                        <li><code>target</code>: URL or path to file that was opened.</li>
+                        <li><code>options</code>: Object with options used to open <code>target</code>.</li>
+                    </ul>
+                </dd>
+            </dl>
+        </li>
+    </ol>
+
+    <h3>Details</h3>
+    <p>
+        This node is used to open web pages, documents and other files in the computer where Node-RED is running.<br><br>
+
+        Unless a specific application is specified, the node opens items using the Node-RED's host computer's default application for the item in question. <br>
+        For example:
+        <ul>
+                <li> URLs are opened using the defaualt browser.</li>
+                <li> JPEG images in the host computers file system are opened using the default image viewer application.</li>
+                <li> Excel documents are opened using Excel.</li>
+                <li> ...</li>
+        </ul>
+    </p>
+    <p>It's also possible to specify that a particular app should be used when opening the item, i.e. overriding the default app.</p>
+
+    <h4>NOTE: Limitations</h4>
+    <p>This node can only open items in the host computer where Node-RED is running.</p>
+    <p>
+        <ul>
+            <li>If running Node-RED natively on a computer, this node can open items (URLs, files etc) on that computer. </li>
+            <li>If running Node-RED as a Docker container, this node will open items in that Docker container. Which is probably
+                not what's desired when it comes to opening web pages, showing images in image viewers etc.</li>
+        </ul>
+    </p>
+    <p>It's actually quite likely that an attempt to use this node from within Node-RED running in a Docker container will just fail, as the Node-RED container won't have a web browser, document viewer etc.</p>
+
+    <h3>References</h3>
+    <ul>
+        <li><a>https://github.com/mountaindude/node-red-contrib-open</a> - the nodes GitHub repository</li>
+        <li><a>https://github.com/sindresorhus/open</a> - the GitHub repository of the open module.</li>
+    </ul>
 </script>
