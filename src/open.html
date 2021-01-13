@@ -1,0 +1,54 @@
+<script type="text/javascript">
+    RED.nodes.registerType('open', {
+        category: 'function',
+        color: '#f07349',
+        defaults: {
+            name: { value: '' },
+            target: { value: '' },
+            app: { value: '' },
+            wait: { value: false },
+            urlencode: { value: false },
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: 'file.png',
+        label: function () {
+            return this.name || 'open';
+        },
+    });
+</script>
+
+<script type="text/html" data-template-name="open">
+    <div class="form-row">
+        <label for="node-input-target"><i class="fa fa-bullseye"></i> Target</label>
+        <input type="text" id="node-input-target" placeholder="Target" />
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-app"><i class="fa fa-play"></i> App</label>
+        <input type="text" id="node-input-app" placeholder="App" />
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-wait"><i class=""></i> Wait for open to complete</label>
+        <input type="checkbox" id="node-input-wait" placeholder="" />
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-urlencode"><i class=""></i> Encode URL</label>
+        <input type="checkbox" id="node-input-urlencode" placeholder="" />
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name" />
+    </div>
+</script>
+
+<script type="text/html" data-help-name="open">
+    <p>Open files using their associated application, or some other application.</p>
+    <p>
+        <b>NOTE: </b> This only works when Node-RED is running as a native Node.js app. In other words: This node does <b>NOT</b> work when Node-RED is running
+        work when Node-RED runs in a Docker container.
+    </p>
+</script>

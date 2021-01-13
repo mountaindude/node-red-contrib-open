@@ -1,0 +1,37 @@
+{
+  "name": "node-red-contrib-open",
+  "version": "1.0.0",
+  "description": "Node-RED node for opening URLs, files etc from Node-RED.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mountaindude/node-red-contrib-open.git"
+  },
+  "keywords": [
+    "node-red"
+  ],
+  "node-red": {
+    "nodes": {
+      "open": "src/open.js"
+    }
+  },
+  "author": {
+    "name": "Göran Sander",
+    "email": "mountaindude@ptarmiganlabs.com",
+    "url": "https://ptarmiganlabs.com"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mountaindude/node-red-contrib-open/issues"
+  },
+  "homepage": "https://github.com/mountaindude/node-red-contrib-open#readme",
+  "dependencies": {
+    "open": "^7.3.1"
+  },
+  "devDependencies": {
+    "jshint": "^2.12.0"
+  }
+}
